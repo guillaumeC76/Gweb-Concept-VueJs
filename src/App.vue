@@ -1,36 +1,12 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <h1 v-show="AfficherMessage()">Mon message : {{ message }}</h1>
-  <br><input v-model="message">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="nav">
+    <router-link to="/">Accueil</router-link> | 
+    <router-link to="/projet">Votre projet</router-link> | 
+    <router-link to="/solution">Notre solution</router-link> | 
+    <router-link to="/offres">Nos offres</router-link>
+  </div>
+  <router-view/>
 </template>
-
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  methods: {
-    AfficherMessage () { 
-      if(this.message === '') {
-        this.vide = true;
-      } else {
-        this.vide = false;
-        return this.message;
-      }
-    },
-  },
-  data () {
-    return {
-      message: '',
-      vide: true,
-    }
-  },
-  name: 'App',
-  components: {
-    HelloWorld
-  },
-}
-</script>
 
 <style lang="scss">
 #app {
@@ -39,6 +15,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }
 </style>
