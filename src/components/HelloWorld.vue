@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <p v-if="ecrire()">Mon message : {{ message }}</p>
+    <input v-model="message">
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -58,6 +60,23 @@
 
 <script>
   export default {
+  methods: {
+    ecrire() { 
+      if(this.message === '') {
+        this.ecriture = false
+      } else {
+        this.ecriture = true;
+        return this.message;
+      }
+    },
+
+  },
+  data () {
+    return {
+      message: '',
+      ecriture: false
+    }
+  },
     name: "HelloWorld",
     props: {
       msg: String,
