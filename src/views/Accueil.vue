@@ -210,6 +210,7 @@ export default {
   margin: 60px auto 0 auto;
   display: block;
   position: relative;
+  cursor: crosshair;
 }
 
 .box {
