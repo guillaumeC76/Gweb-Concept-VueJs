@@ -8,6 +8,7 @@
       type="text"
       :value="nombre"
     />
+    <h2>Le record sur cet ordinateur est de : {{ record > 0 ? record : 0 }}</h2>
     <div class="theFlex">
       <div class="base-timer">
         <svg
@@ -36,6 +37,7 @@
           </g>
         </svg>
         <span class="base-timer__label">{{ formattedTimeLeft }}</span>
+        <button @click="newGame()">Recommencer</button>
       </div>
       <div ref="main" class="main">
         <div ref="box" class="box" @click="random()"></div>
@@ -81,6 +83,7 @@ export default {
       timePassed: 0,
       timerInterval: null,
       activate: false,
+      record: localStorage.getItem("recordDeClique"),
     };
   },
   methods: {
@@ -89,6 +92,7 @@ export default {
         clientWidth: mainWidth,
         clientHeight: mainHeight,
       } = this.$refs.main;
+
       if (this.activate === false) {
         this.startTimer();
         this.activate = true;
@@ -109,12 +113,25 @@ export default {
       }
     },
     onTimesUp() {
-      clearInterval(this.timerInterval);
-      window.alert('Votre nombre de cliques est de : ' + this.clique);
+      clearInterval(this.timerInterval); 
+      if (this.clique > this.record) {
+        window.alert("Votre nombre de cliques est de : " + this.clique + '. NOUVEAUX RECORD !!!!!!');
+        this.record = this.clique;
+        localStorage.setItem("recordDeClique", this.record);
+      } else if(this.record === this.clique) {
+        window.alert("Votre nombre de cliques est de : " + this.clique + '. Vous êtes à égalité avec le record.');
+      } else {
+        window.alert("Votre nombre de cliques est de : " + this.clique + '. Dommage, vous pouvez recommencer.');
+      }
     },
 
     startTimer() {
       this.timerInterval = setInterval(() => (this.timePassed += 1), 1000);
+    },
+
+    newGame() {
+      document.location.reload();
+      //localStorage.clear();
     },
   },
   watch: {
