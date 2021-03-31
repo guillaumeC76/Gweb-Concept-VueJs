@@ -203,8 +203,8 @@ export default {
 }
 
 .main {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border: 2px solid black;
   border-radius: 20px;
   margin: 60px auto 0 auto;
@@ -214,8 +214,8 @@ export default {
 }
 
 .box {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-radius: 20px;
   background-color: red;
   position: absolute;
