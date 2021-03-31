@@ -113,15 +113,27 @@ export default {
       }
     },
     onTimesUp() {
-      clearInterval(this.timerInterval); 
+      clearInterval(this.timerInterval);
       if (this.clique > this.record) {
-        window.alert("Votre nombre de cliques est de : " + this.clique + '. NOUVEAUX RECORD !!!!!!');
+        window.alert(
+          "Votre nombre de cliques est de : " +
+            this.clique +
+            ". NOUVEAUX RECORD !!!!!!"
+        );
         this.record = this.clique;
         localStorage.setItem("recordDeClique", this.record);
-      } else if(this.record === this.clique) {
-        window.alert("Votre nombre de cliques est de : " + this.clique + '. Vous êtes à égalité avec le record.');
+      } else if (this.record === this.clique) {
+        window.alert(
+          "Votre nombre de cliques est de : " +
+            this.clique +
+            ". Vous êtes à égalité avec le record."
+        );
       } else {
-        window.alert("Votre nombre de cliques est de : " + this.clique + '. Dommage, vous pouvez recommencer.');
+        window.alert(
+          "Votre nombre de cliques est de : " +
+            this.clique +
+            ". Dommage, vous pouvez recommencer."
+        );
       }
     },
 
@@ -181,8 +193,6 @@ export default {
   },
 };
 </script>
-
-
 
 <style lang="scss">
 .theFlex {
