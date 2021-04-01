@@ -1,6 +1,8 @@
 <template>
   <div class="home">
     <HelloWorld msg="Bienvenue chez Gweb Concept" />
+    <p>{{ formattedDate }}</p>
+    <p>{{ info }}</p>
     <p v-on:keyup.enter="nombre++"></p>
     <input
       v-on:keyup.up="nombre++"
@@ -69,6 +71,7 @@ const TIME_LIMIT = 40;
 
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
+import {mapGetters} from 'vuex';
 
 export default {
   name: "Accueil",
@@ -84,6 +87,7 @@ export default {
       timerInterval: null,
       activate: false,
       record: localStorage.getItem("recordDeClique"),
+      info: null,
     };
   },
   methods: {
@@ -146,6 +150,11 @@ export default {
       //localStorage.clear();
     },
   },
+  mounted() {
+    axios
+      .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+      .then(response => (this.info = response))
+  },
   watch: {
     timeLeft(newValue) {
       if (newValue === 0) {
@@ -154,6 +163,8 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(['formattedDate']),
+
     circleDasharray() {
       return `${(this.timeFraction * FULL_DASH_ARRAY).toFixed(0)} 283`;
     },
