@@ -208,6 +208,13 @@ export default {
   padding: 20px 0 40px 0;
 }
 
+@media screen and (max-width: 890px) {
+  .theFlex {
+  flex-direction: column;
+  padding: 20px 0 40px 0;
+}
+}
+
 .main {
   width: 500px;
   height: 500px;
