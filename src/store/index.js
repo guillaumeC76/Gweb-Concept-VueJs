@@ -5,11 +5,11 @@ export default createStore({
     day: 1,
     month: 4,
     year: 2021,
-    bestScore: 0,
+    clique: 0,
   },
   getters: {
     formattedScore(state) {
-      return `${state.bestScore}`;
+      return `${state.clique}`;
     },
     formattedDate(state) {
       return `${state.day}/${state.month}/${state.year}`;

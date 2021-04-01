@@ -2,7 +2,6 @@
   <div class="home">
     <HelloWorld msg="Bienvenue chez Gweb Concept" />
     <p>{{ formattedDate }}</p>
-    <p>{{ info }}</p>
     <p v-on:keyup.enter="nombre++"></p>
     <input
       v-on:keyup.up="nombre++"
@@ -44,6 +43,9 @@
       <div ref="main" class="main">
         <div ref="box" class="box" @click="random()"></div>
       </div>
+      <div class="resultat">
+        <p v-for="resultat in resultats" :key="resultat.message">{{ resultat.message }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -67,11 +69,11 @@ const COLOR_CODES = {
   },
 };
 
-const TIME_LIMIT = 40;
+const TIME_LIMIT = 5;
 
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
-import {mapGetters} from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   name: "Accueil",
@@ -87,7 +89,11 @@ export default {
       timerInterval: null,
       activate: false,
       record: localStorage.getItem("recordDeClique"),
-      info: null,
+      resultats: [
+        {
+          message: JSON.parse(localStorage.getItem("resultat")),
+        },
+      ],
     };
   },
   methods: {
@@ -118,6 +124,8 @@ export default {
     },
     onTimesUp() {
       clearInterval(this.timerInterval);
+      this.resultats.push({message: this.clique})
+      localStorage.setItem("resultat", JSON.stringify(this.resultats) );
       if (this.clique > this.record) {
         window.alert(
           "Votre nombre de cliques est de : " +
@@ -147,7 +155,7 @@ export default {
 
     newGame() {
       document.location.reload();
-      //localStorage.clear();
+      localStorage.clear();
     },
   },
   watch: {
@@ -158,7 +166,8 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['formattedDate']),
+    ...mapGetters(["formattedDate"]),
+    ...mapGetters(["formattedScore"]),
 
     circleDasharray() {
       return `${(this.timeFraction * FULL_DASH_ARRAY).toFixed(0)} 283`;
@@ -210,9 +219,16 @@ export default {
 
 @media screen and (max-width: 890px) {
   .theFlex {
-  flex-direction: column;
-  padding: 20px 0 40px 0;
+    flex-direction: column;
+    padding: 20px 0 40px 0;
+  }
 }
+
+.resultat {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0;
 }
 
 .main {
