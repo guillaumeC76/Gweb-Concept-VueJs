@@ -43,8 +43,11 @@
       <div ref="main" class="main">
         <div ref="box" class="box" @click="random()"></div>
       </div>
+
       <div class="resultat">
-        <p v-for="resultat in resultats" :key="resultat.message">{{ resultat.message }}</p>
+        <h3 class="result" v-for="resultat in resultats" :key="resultat">
+          {{ resultat }} {{ record }}
+        </h3>
       </div>
     </div>
   </div>
@@ -89,12 +92,12 @@ export default {
       timerInterval: null,
       activate: false,
       record: localStorage.getItem("recordDeClique"),
-      resultats: [
-        {
-          message: JSON.parse(localStorage.getItem("resultat")),
-        },
-      ],
+      resultats: [],
     };
+  },
+  mounted() {
+    if (localStorage.getItem("resultat"))
+      this.resultats = JSON.parse(localStorage.getItem("resultat"));
   },
   methods: {
     random() {
@@ -124,8 +127,8 @@ export default {
     },
     onTimesUp() {
       clearInterval(this.timerInterval);
-      this.resultats.push({message: this.clique})
-      localStorage.setItem("resultat", JSON.stringify(this.resultats) );
+      this.resultats.unshift(this.clique);
+      localStorage.setItem("resultat", JSON.stringify(this.resultats));
       if (this.clique > this.record) {
         window.alert(
           "Votre nombre de cliques est de : " +
@@ -155,7 +158,7 @@ export default {
 
     newGame() {
       document.location.reload();
-      localStorage.clear();
+      //localStorage.clear();
     },
   },
   watch: {
@@ -210,6 +213,10 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  margin: 0;
+}
+
 .theFlex {
   display: flex;
   align-items: center;
@@ -228,7 +235,21 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 20px 0;
+  background-color: rgb(65, 184, 131);
+  color: white;
+  overflow-y: hidden;
+  width: 10%;
+  height: 524px;
+  border: 2px solid black;
+  border-bottom: none;
+}
+
+.result {
+  margin: 0;
+  width: 100%;
+  padding: 12px 0;
+  border-bottom: 2px solid black;
+  transition: 1s;
 }
 
 .main {
@@ -236,7 +257,7 @@ export default {
   height: 500px;
   border: 2px solid black;
   border-radius: 20px;
-  margin: 60px auto 0 auto;
+  margin: 0 auto;
   display: block;
   position: relative;
   cursor: crosshair;
