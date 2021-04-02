@@ -72,7 +72,7 @@ const COLOR_CODES = {
   },
 };
 
-const TIME_LIMIT = 5;
+const TIME_LIMIT = 40;
 
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
