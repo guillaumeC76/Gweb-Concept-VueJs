@@ -206,6 +206,8 @@ export default {
 <style lang="scss">
 body {
   margin: 0;
+  background-color: rgb(65, 184, 131);
+  color: white;
 }
 
 .theFlex {
@@ -222,16 +224,18 @@ body {
   }
 }
 
+.home {
+  color: white;
+  margin: 0 50px;
+}
+
 .resultat {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
   background-color: rgb(65, 184, 131);
   color: white;
   overflow-y: hidden;
   width: 10%;
   height: 524px;
-  border: 2px solid black;
+  border: 2px solid white;
   border-bottom: none;
 }
 
@@ -239,17 +243,16 @@ body {
   margin: 0;
   width: 100%;
   padding: 12px 0;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid white;
   transition: 1s;
 }
 
 .main {
   width: 500px;
   height: 500px;
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 20px;
   margin: 0 auto;
-  display: block;
   position: relative;
   cursor: crosshair;
 }
@@ -293,7 +296,7 @@ body {
     stroke: currentColor;
 
     &.green {
-      color: rgb(65, 184, 131);
+      color: rgb(65, 236, 42);
     }
 
     &.orange {

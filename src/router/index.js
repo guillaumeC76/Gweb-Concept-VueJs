@@ -1,16 +1,16 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Header from '../views/Accueil.vue'
+import Header from '../views/Kliker.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Accueil',
+    name: 'Kliker',
     component: Header
   },
   {
-    path: '/projet',
-    name: 'Votre projet',
-    component: () => import('../views/Projet.vue')
+    path: '/carte_a_suivre',
+    name: 'Carte à suivre',
+    component: () => import('../views/Carte_a_suivre.vue')
   },
   {
     path: '/solution',
