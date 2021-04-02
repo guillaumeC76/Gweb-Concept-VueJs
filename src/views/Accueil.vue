@@ -46,7 +46,7 @@
 
       <div class="resultat">
         <h3 class="result" v-for="resultat in resultats" :key="resultat">
-          {{ resultat }} {{ record }}
+          {{ resultat }}
         </h3>
       </div>
     </div>
