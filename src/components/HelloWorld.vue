@@ -1,30 +1,11 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <p v-if="ecrire()">Mon message : {{ message }}</p>
-    <input v-model="message">
   </div>
 </template>
 
 <script>
   export default {
-  methods: {
-    ecrire() { 
-      if(this.message === '') {
-        this.ecriture = false
-      } else {
-        this.ecriture = true;
-        return this.message;
-      }
-    },
-
-  },
-  data () {
-    return {
-      message: '',
-      ecriture: false
-    }
-  },
     name: "HelloWorld",
     props: {
       msg: String,

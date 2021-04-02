@@ -1,15 +1,7 @@
 <template>
   <div class="home">
     <HelloWorld msg="Bienvenue chez Gweb Concept" />
-    <p>{{ formattedDate }}</p>
-    <p v-on:keyup.enter="nombre++"></p>
-    <input
-      v-on:keyup.up="nombre++"
-      v-on:keyup.down="nombre--"
-      type="text"
-      :value="nombre"
-    />
-    <h2>Le record sur cet ordinateur est de : {{ record > 0 ? record : 0 }}</h2>
+    <h2>Votre grand record est de : {{ record > 0 ? record : 0 }}</h2>
     <div class="theFlex">
       <div class="base-timer">
         <svg
@@ -86,7 +78,6 @@ export default {
 
   data() {
     return {
-      nombre: 0,
       clique: 0,
       timePassed: 0,
       timerInterval: null,
